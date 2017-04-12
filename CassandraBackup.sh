@@ -18,17 +18,17 @@ do
 echo " Enter Table Name: "
 read TABLE
 echo " Taking Backup of Table $table in Keyspace $KEYSPACE "
-nodetool snapshot -t $DATE-$KEYSPACE --table $TABLE $KEYSPACE
+nodetool snapshot -t $KEYSPACE-$DATE --table $TABLE $KEYSPACE
 echo "Snaphot tar archives stored in Location : $Backup_Location"
-tar czf $Backup_Location/$DATE-$KEYSPACE.tgz $DataDir__Location/$DATE-$KEYSPACE.tgz
+tar czf $Backup_Location/$KEYSPACE-$DATE.tgz $DataDir__Location/$KEYSPACE-$DATE.tgz
             ;;
 
         "Keyspace")
 #Take a snapshot of Specified keyspaces on the node
 echo " Taking Backup of Keyspace $KEYSPACE "
-nodetool snapshot -t $DATE-$KEYSPACE $KEYSPACE
+nodetool snapshot -t $KEYSPACE-$DATE $KEYSPACE
 echo "Snaphot tar archives stored in Location : $Backup_Location"
-tar czf $Backup_Location/$DATE-$KEYSPACE.tgz $DataDir__Location/$DATE-$KEYSPACE.tgz
+tar czf $Backup_Location/$KEYSPACE-$DATE.tgz $DataDir__Location/$KEYSPACE-$DATE.tgz
             ;;
 
         "CompleteKeyspace")
@@ -36,9 +36,9 @@ tar czf $Backup_Location/$DATE-$KEYSPACE.tgz $DataDir__Location/$DATE-$KEYSPACE.
 echo " For taking snapshot of all Keyspace,Press Enter: "
 cqlsh `hostname -I` -e 'DESCRIBE KEYSPACES' > /tmp/mykeyspace.cql
 for Keyspace in `grep -v 'OpsCenter' /tmp/mykeyspace.cql`; do
-    nodetool snapshot -t $DATE-$Keyspace $Keyspace
+    nodetool snapshot -t $KEYSPACE-$DATE $Keyspace
     echo "Snaphot tar archives stored in Location : $Backup_Location"
-    tar -cvzf $Backup_Location/$DATE-$Keyspace.tgz $DataDir__Location/$DATE-$Keyspace    
+    tar -cvzf $Backup_Location/$KEYSPACE-$DATE.tgz $DataDir__Location/$KEYSPACE-$DATE    
             ;;
             
         "Quit")
