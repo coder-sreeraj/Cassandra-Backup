@@ -18,9 +18,9 @@ do
 echo " Enter Table Name: "
 read TABLE
 echo " Taking Backup of Table $table in Keyspace $KEYSPACE "
-nodetool snapshot -t $KEYSPACE-$DATE --table $TABLE $KEYSPACE
+nodetool snapshot -t $KEYSPACE-$TABLE-$DATE --table $TABLE $KEYSPACE
 echo "Snaphot tar archives stored in Location : $Backup_Location"
-tar czf $Backup_Location/$KEYSPACE-$DATE.tgz $DataDir__Location/$KEYSPACE-$DATE.tgz
+tar czf $Backup_Location/$KEYSPACE-$DATE.tgz $DataDir__Location/$KEYSPACE-$TABLE-$DATE.tgz
             ;;
 
         "Keyspace")
