@@ -54,6 +54,7 @@ aws s3 cp $Backup_Location/$KEYSPACE-$DATE.tgz  s3://$S3Bucket/
              
         "Clear Snapshot")
 #Clear all snapshot from Disk
+echo "Clearing all Snapshot taken in Disk"
 nodetool clearsnapshot 
              ;;
                  
