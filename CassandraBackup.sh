@@ -61,3 +61,5 @@ nodetool clearsnapshot
         "Quit")
             break
             ;;
+    esac
+done
